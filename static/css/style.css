@@ -1,0 +1,58 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+* {
+    padding: 0;
+}
+
+body {
+    background-color: rgb(240, 239, 239);
+    color: rgb(43, 41, 41);
+    font-family: 'Montserrat';
+    text-align: center;
+    display: flex;
+    flex-wrap: wrap; /* Permette ai div di andare a capo se non c'è spazio */
+    justify-content: center; /* Centra i div orizzontalmente */
+}
+
+h2 {
+    font-size: 8vh;
+}
+
+img {
+    width: 25%;
+}
+
+
+.film-ritratto-container{
+    display: flex;
+    flex-wrap: wrap; /* Permette ai div di andare a capo se non c'è spazio */
+    justify-content: center; /* Centra i div orizzontalmente */
+    margin: 20px;
+    background-color: #323131;
+    max-width: 250px;
+}
+
+.film-ritratto {
+    border: 1px solid #323131;
+    background-color: #c90fa0;
+    border-radius: 8px;
+    overflow: hidden;
+    width: 250px;
+    margin: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+.film-ritratto img {
+    width: 100%;
+    height: auto;
+}
+.film-info {
+    background-color: #c90fa0;
+    padding: 15px;
+}
+.film-info h2 {
+    margin: 0;
+    font-size: 18px;
+}
+.film-info p {
+    margin: 5px 0;
+}

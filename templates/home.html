@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+
+{% block title %}Streaming - Home Page{% endblock %}
+
+{% block content %}
+<style>
+    .col-md-4 {
+    position: relative; /* Mantieni il contenitore come relativo */
+}
+
+.card-body,
+.list-group {
+    display: none; /* Nascondi per default */
+    width: 100%;
+    position: absolute; /* Posiziona gli elementi in modo assoluto */
+    top: 100%; /* Sposta verso il basso di 20 pixel (puoi regolare questo valore) */
+    left: 0; /* Mantieni a sinistra */
+    z-index: 1; /* Assicurati che si sovrappongano ad altri elementi */
+}
+
+.col-md-4:hover .card-body,
+.col-md-4:hover .list-group {
+    display: block; /* Mostra al passaggio del mouse */
+}
+</style>
+<div class="row" >
+    <div class="col-mb-3">
+        <h2 class="fw-bold">Streaming Catalog</h2>
+        <br>
+    </div>
+    <div class="container">
+        <div class="row">
+            {% for film in films %}
+            <div class="col-md-4"> <!-- Modifica la dimensione della colonna -->
+                <div class="card mb-4"> <!-- Aggiungi margine per separare le card -->
+                    <img src="{{ film.get_img_url() }}" class="card-img-top" alt="...">
+                    <div class="card-body" style="padding: 0; display: none;">
+                        
+                    </div>
+                    <ul class="list-group list-group-flush" style="display: none;">
+                        <div class="accordion accordion-flush" id="accordionFlushExample" style="margin: 0; padding: 0;">
+                            <div class="accordion-item" style="margin: 0; padding: 0;">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse{{ loop.index }}" aria-expanded="false" aria-controls="flush-collapse{{ loop.index }}">
+                                        <strong>Descrizione:</strong>
+                                    </button>
+                                </h2>
+                                <div id="flush-collapse{{ loop.index }}" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                                    <div class="accordion-body">{{ film.description }}</div>
+                                </div>
+                            </div>
+                        </div>
+                        <li class="list-group-item"><strong>Durata:</strong> {{ film.runtime }} min</li>
+                        <li class="list-group-item"><strong>Generi:</strong>
+                            {% for genre in film.genres %}
+                                {{genre.name}}
+                            {% endfor %}
+                        </li>
+                        <div class="card-body" style="display: none;">
+                            <a href="https://streamingcommunity.computer/titles/{{film.title_id}}-a" class="btn btn-primary">Play</a>
+                        </div>
+                    </ul>
+                    
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+    const columns = document.querySelectorAll('.col-md-4');
+
+    columns.forEach(column => {
+        column.addEventListener('mouseenter', () => {
+            column.querySelectorAll('.card-body, .list-group').forEach(item => {
+                item.style.display = 'block'; // Mostra gli elementi
+            });
+        });
+
+        column.addEventListener('mouseleave', () => {
+            column.querySelectorAll('.card-body, .list-group').forEach(item => {
+                item.style.display = 'none'; // Nascondi gli elementi
+            });
+        });
+    });
+});
+    </script>
+</div>
+{% endblock %}

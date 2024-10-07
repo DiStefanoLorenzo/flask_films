@@ -1,0 +1,24 @@
+<!-- auth\profile.html -->
+{% extends "base.html" %}
+
+{% block title %}Flask Profile{% endblock %}
+
+{% block content %}
+<div class="row mt-3">
+    <div class="col-mb-3">
+        <h2 class="fw-bold">YOUR API KEY</h2>
+    </div>
+</div>
+<div class="row mb-5 mt-3">
+    <div class="col-mb-3">
+        <p class="p-4 bg-dark rounded" style="color: #fff; font-family: 'Cascadia Code';">
+            {% for api_key in api_keys %}
+            {{ api_key.value }}<br>
+            {% endfor %}
+        </p>
+    </div>
+    <div class="col-mb-3">
+        <p>If you don't have any API_KEY... <button class="btn btn-warning" action="generate_api_key">GENERATE ONE</button></p>
+    </div>
+</div>
+{% endblock %}
